@@ -24,6 +24,6 @@ prepared_data = json.loads(the_new_data)
 
 tao_te_ching.update(prepared_data)
 
-Write the new JSON data to disk.
+# Write the new JSON data to disk.
 with open("tao_te_ching.json", "w") as file:  # write json data
     json.dump(tao_te_ching, file, indent=4)
