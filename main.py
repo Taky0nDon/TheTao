@@ -5,15 +5,19 @@ import verse_adder as veradd
 with open("tao_te_ching.json", "r") as file:  # read json data
     tao_te_ching = json.load(file)
 
-# Get the key for the verse to be added
-current_verse = str(len(tao_te_ching) + 1)
-key = current_verse
+# Get the number of the verse, for use as the key/identifier
+current_verse_number = len(tao_te_ching) + 1
+key = f"{current_verse_number}"
 
-# Get the verse to be added
-nextverse = veradd.VerseAdder().result
+# Get the verse
+verse = veradd.VerseAdder().result
 
-# Add the verse to the JSON object
-tao_te_ching[key] = nextverse
+# Format it in a way that json.loads like
+the_new_data = "{" + f'"{key}": "{verse}"' + "}"
+
+# Prepare the string to be added to the JSON file
+prepared_data = json.loads(the_new_data)
+tao_te_ching.update(prepared_data)
 
 # Write the new JSON data to disk.
 with open("tao_te_ching.json", "w") as file:  # write json data
