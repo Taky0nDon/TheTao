@@ -14,9 +14,10 @@ current_verse_number = len(tao_te_ching) + 1
 key = f"{current_verse_number}"
 
 # Get the verse
-verse = veradd.VerseAdder().result
+# verse = veradd.VerseAdder().add_verse()
 
 # Format it in a way that json.loads likes
+
 the_new_data = "{" + f'"{key}": "{verse}"' + "}"
 
 # Convert the string to a dictionary, preserving the unicode escape sequences
@@ -24,6 +25,6 @@ prepared_data = json.loads(the_new_data)
 
 tao_te_ching.update(prepared_data)
 
-Write the new JSON data to disk.
+# Write the new JSON data to disk.
 with open("tao_te_ching.json", "w") as file:  # write json data
     json.dump(tao_te_ching, file, indent=4)
